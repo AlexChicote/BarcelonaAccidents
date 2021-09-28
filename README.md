@@ -1,8 +1,8 @@
 # BarcelonaAccidents
 
-OBJECTIVE. Develop a model in ml that will predict when an accident has severely injured people or deads.
+OBJECTIVE. Develop a model in ml that will predict when an accident has severely injured people or deaths.
 
-DATA SOURCE: From the city of Barcelona open data server. https://opendata-ajuntament.barcelona.cat/en . THe weather part is obtained from darksky API.
+DATA SOURCE: From the city of Barcelona open data server. https://opendata-ajuntament.barcelona.cat/en . The weather part is obtained from darksky API.
 
 LIMITATIONS: Amongst other limitations more common in any given dataset, I only have the accidents in Barcelona during 2010-2020 reported by the Local Police (aka Guardia Urbana)
 
@@ -22,9 +22,9 @@ Everything is merged an combined in BarcelonaAccident2020.ipynb using also some 
 
 TARGET. I decided to try to predict if an accident has any severely injured or deaths. This is how I created a new column that I called "target". Its value is one if the accident has any deaths and/or severely injured people, 0 if there are no injuries or these are minor. The idea is to be able to create a model that anticipates what accidents might need to be  prioritized.
 
-METRICS. First of all, it is a binary classification problem. Secondly,it is a very imbalanced dataset (97.5% of 0). 
+METRICS. First of all, it is a binary classification problem. Secondly,it is a very imbalanced dataset (97.5% of majority class).
 
 Based on this:
 
-  1. The most obvious metric to use is RECALL as we want to minimize the false negatives (predicting as having no sever injuries when there are).
-  2. I start using AUC_ROC to evaluate the model and be able to play with the threshold, if necessary. I added accuracy because I want to make sure that it does not go below 70%. A model that is over 30% wrong might lose interest.
+  1. The most obvious metric to use is RECALL as we want to minimize the false negatives (predicting an accident not having deaths and/or severely injured when it actually has).
+  2. I will use also AUC_ROC to evaluate the model and be able to play with the threshold, if necessary. I added accuracy because I want to make sure that it does not go below 70% to avoid the cry wolf syndrome.
