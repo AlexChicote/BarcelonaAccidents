@@ -398,3 +398,69 @@ def getting_daily_weather(date):
     df['time'] = df['time'].apply(lambda x: (datetime.fromtimestamp(x)+ timedelta(hours=6)).strftime('%Y-%m-%d %H:%M:%S'))
     
     return df
+
+#mapping_vehicles
+
+
+map_vehicles={'Motocicleta': 'motorcycle',
+'Ciclomotor': 'moped',
+'Turismo': 'car',
+'Furgoneta':'van',
+'Bicicleta':'bicycle',
+'Taxi':'taxi',
+'Tranvía o tren':'tram',
+'Autobús':'bus',
+'Cuadriciclo >=75cc':'quadricycle over 75cc',
+'Camión <= 3,5 Tm':'truck under 3.5 tons',
+'Microbus <=17 plazas': 'minibus <17 pass',
+'Camión > 3,5 Tm':'truck over 3.5 tons',
+'Autobús articulado':'articulated bus',
+'Tractocamión':'tractor-truck',
+'Todo terreno':'suv',
+'Cuadriciclo <75cc':'quadricycle under 75cc',
+'Otros vehíc. a motor':'other motor vehicles',
+'Autocar':'bus',
+'Maquinaria de obras':'construction machinery',
+'Autob£s':'bus',
+'Otros veh¡c. a motor':'other motor vehicles',
+'Cami¢n <= 3,5 Tm':'truck under 3.5 tons',
+'Autob£s articulado':'articulated bus',
+'Cami¢n > 3,5 Tm':'truck over 3.5 tons',
+'Tranv¡a o tren':'tram',
+'Tractocami¢n':'tractor-truck',
+'Autocaravana':'camper',
+'Turisme':'car',
+'Autobús articulat':'articulated bus',
+'Altres vehicles sense motor':'other non-motor vehicles',
+'Camió rígid <= 3,5 tones':'truck under 3.5 tons',
+'Altres vehicles amb motor':'other engine vehicles',
+'Quadricicle > 75 cc':'quadricycle over 75cc',
+'Camió rígid > 3,5 tones':'truck over 3.5 tons',
+'Tren o tramvia':'tram',
+'Maquinària d"obres i serveis':'construction machinery',
+'Tractor camió': 'Tractor camió-truck',
+'Tot terreny':'suv',
+'Quadricicle < 75 cc':'quadricycle under 75cc',
+'Desconegut':'unknown',
+'Microbus <= 17': 'minibus <17 pass',
+'Veh. mobilitat personal amb motor': 'personal motor vehicles',
+'Veh. mobilitat personal sense motor':'personal non-motor vehicles',
+'Microbús <= 17': 'minibus <17 pass',
+'Carro':'wagon',
+'Pick-up':'van',
+"Maquinŕria d'obres i serveis":'construction machinery',
+"Maquinària d'obres i serveis":'construction machinery',
+'Ambulŕncia': 'ambulance'}
+
+def organizing_types(string,type_list):
+    set_string=set(string.split(','))
+    if len(set_string)==1:
+        return str(set_string)[2:-2]
+    else:
+        for ty in type_list:
+            if ty in set_string:
+                set_string.remove(ty)
+                if len(set_string)==1:
+                      return str(set_string)[2:-2]
+        
+    return set_string
