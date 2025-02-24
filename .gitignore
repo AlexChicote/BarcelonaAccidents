@@ -26,14 +26,16 @@
 barcelona_keys.py
 modeling/data/dataframes_dict_files.pkl
 .ipynb_checkpoints
+*.csv
+*.zip
+*.pkl
 
 # Logs and databases #
 ######################
 *.log
 *.sql
 *.sqlite
-*.csv
-*.zip
+
 
 # OS generated files #
 ######################
