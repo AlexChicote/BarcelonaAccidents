@@ -32,6 +32,8 @@ modeling/data/dataframes_dict_files.pkl
 *.log
 *.sql
 *.sqlite
+*.csv
+*.zip
 
 # OS generated files #
 ######################
