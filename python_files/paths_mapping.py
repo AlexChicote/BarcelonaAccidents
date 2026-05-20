@@ -1,13 +1,11 @@
 from pathlib import Path
 
-BASE_DIR = Path(__file__).parent.parent.parent
-#print(BASE_DIR)
-WEATHER_PATH = BASE_DIR/'modeling'/ 'data'/'weather'
-#print(WEATHER_PATH)
-FILES_PATH = BASE_DIR /'modeling'/ 'data'
+BASE_DIR = Path(__file__).parent.parent
+# print(BASE_DIR)
+WEATHER_PATH = BASE_DIR / 'data'/'weather'
+# print(WEATHER_PATH)
+FILES_PATH = BASE_DIR / 'data'
 # print(FILES_PATH)
-SHAPEFILES_PATH = BASE_DIR/'Tableau'/'shapefiles'
-print(SHAPEFILES_PATH)
 
 ##mappings
 

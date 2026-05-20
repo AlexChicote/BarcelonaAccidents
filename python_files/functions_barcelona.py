@@ -14,8 +14,60 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import MinMaxScaler, OneHotEncoder, OrdinalEncoder
 from sklearn.impute import KNNImputer
 
-from .paths_mapping import * 
+from .paths_mapping import *
 
+
+def read_df(base_dir,pathname):
+    print(f'Working with...{pathname}')
+    encodings = ['utf-8', 'latin-1']
+    for enc in encodings:
+        try:
+            df = pd.read_csv(base_dir+pathname, encoding = enc, engine='python')
+            print(f"{pathname} successfully read with {enc}")
+            return df
+            break
+        except:
+            try:
+                df = pd.read_csv(base_dir+pathname, encoding = enc, sep=';')
+                print(f"{pathname} successfully read with {enc}")
+                return df
+                break
+            except UnicodeDecodeError:
+                continue
+    else:
+        raise Exception(f"unable to decode the file {pathname}")
+
+
+def fixing_columns(dataframe):
+    """
+        Changes column names to have the same column names
+    """
+    dataframe.columns =[col.replace("ú",'u').replace("ó","o").replace("'",'').replace(' ','_').replace("_de_","_").replace("í","i").replace("¢",'o') for col in dataframe]
+    dataframe = dataframe.rename(columns=mapping_original_columns,)
+   
+    return dataframe
+
+
+
+def fixing_lat(row):
+    if row['lat'] == -1:
+        return row['lon_lat_check'] + 1000
+    if pd.isnull(row['lat']) is None:
+        return row['lon_lat_check'] + 10000
+    if 41.5>row['lat'] >41.2000:
+        return row['lon_lat_check']
+    else:
+        return row['lon_lat_check'] + 1
+        
+def fixing_lon(row):
+    if row['lon'] == -1:
+        return row['lon_lat_check'] + 1000
+    if pd.isnull(row['lon']) is None:
+        return row['lon_lat_check'] + 10000
+    if 2.27>row['lon'] >2.06:
+        return row['lon_lat_check']
+    else:
+        return row['lon_lat_check'] + 1
 
 def concatenating_dataframes(filter_,response):
     """Not used so far"""
